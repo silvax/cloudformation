@@ -98,12 +98,12 @@
         }
       }
     },
-    "InInInternetGateway": {
+    "MyInternetGateway": {
       "Type": "AWS::EC2::InternetGateway",
       "Properties": {
       }
     },
-    "InInDHCPOpttions": {
+    "MyDHCPOpttions": {
       "Type": "AWS::EC2::DHCPOptions",
       "Properties": {
         "DomainName" : "ec2.internal",
@@ -112,7 +112,7 @@
         ]
       }
     },
-    "InInACL": {
+    "MyACL": {
       "Type": "AWS::EC2::NetworkAcl",
       "Properties": {
         "VpcId": {
@@ -120,7 +120,7 @@
         }
       }
     },
-    "InInRouteTable": {
+    "MyRouteTable": {
       "Type": "AWS::EC2::RouteTable",
       "Properties": {
         "VpcId": {
@@ -137,7 +137,7 @@
         "RuleAction": "allow",
         "RuleNumber": "100",
         "NetworkAclId": {
-          "Ref": "InInACL"
+          "Ref": "MyACL"
         }
       }
     },
@@ -149,7 +149,7 @@
         "RuleAction": "allow",
         "RuleNumber": "100",
         "NetworkAclId": {
-          "Ref": "InInACL"
+          "Ref": "MyACL"
         }
       }
     },
@@ -157,7 +157,7 @@
       "Type": "AWS::EC2::SubnetNetworkAclAssociation",
       "Properties": {
         "NetworkAclId": {
-          "Ref": "InInACL"
+          "Ref": "MyACL"
         },
         "SubnetId": {
           "Ref": "subneta"
@@ -168,7 +168,7 @@
       "Type": "AWS::EC2::SubnetNetworkAclAssociation",
       "Properties": {
         "NetworkAclId": {
-          "Ref": "InInACL"
+          "Ref": "MyACL"
         },
         "SubnetId": {
           "Ref": "subnetb"
@@ -179,7 +179,7 @@
       "Type": "AWS::EC2::SubnetNetworkAclAssociation",
       "Properties": {
         "NetworkAclId": {
-          "Ref": "InInACL"
+          "Ref": "MyACL"
         },
         "SubnetId": {
           "Ref": "subnetc"
@@ -191,7 +191,7 @@
       "Properties": {
         "VpcId": { "Ref" : "VPC" },
         "InternetGatewayId": {
-          "Ref": "InInInternetGateway"
+          "Ref": "MyInternetGateway"
         }
       }
     },
@@ -199,7 +199,7 @@
       "Type": "AWS::EC2::SubnetRouteTableAssociation",
       "Properties": {
         "RouteTableId": {
-          "Ref": "InInRouteTable"
+          "Ref": "MyRouteTable"
         },
         "SubnetId": {
           "Ref": "subneta"
@@ -210,7 +210,7 @@
       "Type": "AWS::EC2::SubnetRouteTableAssociation",
       "Properties": {
         "RouteTableId": {
-          "Ref": "InInRouteTable"
+          "Ref": "MyRouteTable"
         },
         "SubnetId": {
           "Ref": "subnetb"
@@ -221,7 +221,7 @@
       "Type": "AWS::EC2::SubnetRouteTableAssociation",
       "Properties": {
         "RouteTableId": {
-          "Ref": "InInRouteTable"
+          "Ref": "MyRouteTable"
         },
         "SubnetId": {
           "Ref": "subnetc"
@@ -233,10 +233,10 @@
       "Properties": {
         "DestinationCidrBlock": "0.0.0.0/0",
         "RouteTableId": {
-          "Ref": "InInRouteTable"
+          "Ref": "MyRouteTable"
         },
         "GatewayId": {
-          "Ref": "InInInternetGateway"
+          "Ref": "MyInternetGateway"
         }
       },
       "DependsOn": "gateway"
@@ -249,7 +249,7 @@
           "Ref": "VPC"
         },
         "DhcpOptionsId": {
-          "Ref": "InInDHCPOpttions"
+          "Ref": "MyDHCPOpttions"
         }
       }
     }
